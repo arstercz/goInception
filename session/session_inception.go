@@ -1712,7 +1712,8 @@ func (s *session) mysqlServerVersion() {
 				}
 
 				versionStr := strings.Split(value, "-")[0]
-				versionSeg := strings.Split(versionStr, ".")
+				re := regexp.MustCompile(`^(\d+\.\d+\.\d+?).*$`)
+				versionSeg := strings.Split(re.ReplaceAllString(versionStr, "${1}"), ".")
 				if len(versionSeg) == 3 {
 					versionStr = fmt.Sprintf("%s%02s%02s", versionSeg[0], versionSeg[1], versionSeg[2])
 					version, err := strconv.Atoi(versionStr)
