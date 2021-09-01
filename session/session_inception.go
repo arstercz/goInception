@@ -8067,10 +8067,15 @@ func (s *session) checkSetStmt(node *ast.SetStmt) {
 		if variable.Name == ast.SetNames {
 			if value, ok := variable.Value.(*ast.ValueExpr); ok {
 				v := value.GetString()
-				if strings.EqualFold(v, "utf8") || strings.EqualFold(v, "utf8mb4") {
+				if strings.EqualFold(v, "utf8") || 
+					strings.EqualFold(v, "utf8mb4") || 
+					strings.EqualFold(v, "latin1") || 
+					strings.EqualFold(v, "binary") || 
+					strings.EqualFold(v, "gbk") {
+
 					continue
 				}
-				s.appendErrorNo(ErrCharsetNotSupport, "utf8,utf8mb4")
+				s.appendErrorNo(ErrCharsetNotSupport, "utf8,utf8mb4,latin1,binary,gbk")
 			}
 		} else {
 			if !s.inc.EnableAnyStatement {
