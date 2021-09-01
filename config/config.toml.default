@@ -191,6 +191,12 @@ osc_on = false
 # [0-1048576]
 osc_min_table_size = 16
 
+# 通过 pt-osc 或 gh-ost 修改表的时候, 如果表很大, 修改完表后如果立即删除旧表就很容易产生性能问题,
+# 更多讨论见: https://github.com/github/gh-ost/issues/307
+# 该选项用来控制 pt-osc(对应选项 --drop-old-table), gh-ost(对应选项: --ok-to-drop-table) 开启删除
+# 旧表的时候, 超过指定大小则不进行删除. 单位为 M, 计算方式等同 osc_min_table_size.
+osc_max_drop_table_size = 1024
+
 # 对应参数pt-online-schema-change中的参数alter-foreign-keys-method，具体意义可以参考OSC官方手册。默认值：none
 # [auto | none | rebuild_constraints | drop_swap]
 osc_alter_foreign_keys_method = "none"

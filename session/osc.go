@@ -144,7 +144,7 @@ func (s *session) mysqlExecuteAlterTableOsc(r *Record) {
 		buf.WriteString(" --no-drop-new-table ")
 	}
 
-	if !s.osc.OscDropOldTable {
+	if !s.osc.OscDropOldTable || r.TableInfo.TableSize > s.osc.OscMaxDropTableSize {
 		buf.WriteString(" --no-drop-old-table ")
 	}
 
@@ -277,6 +277,11 @@ func (s *session) mysqlExecuteWithGhost(r *Record) {
 	buf.WriteString(fmt.Sprintf(" --skip-foreign-key-checks=%t", s.ghost.GhostSkipForeignKeyChecks))
 	buf.WriteString(fmt.Sprintf(" --aliyun-rds=%t", s.ghost.GhostAliyunRds))
 	buf.WriteString(fmt.Sprintf(" --gcp=%t", s.ghost.GhostGcp))
+
+	if r.TableInfo.TableSize > s.osc.OscMaxDropTableSize {
+		s.ghost.GhostOkToDropTable = false
+	}
+
 	buf.WriteString(fmt.Sprintf(" --ok-to-drop-table=%t", s.ghost.GhostOkToDropTable))
 	buf.WriteString(fmt.Sprintf(" --initially-drop-old-table=%t", s.ghost.GhostInitiallyDropOldTable))
 	buf.WriteString(fmt.Sprintf(" --initially-drop-ghost-table=%t", s.ghost.GhostInitiallyDropGhostTable))
