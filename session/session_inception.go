@@ -3933,6 +3933,10 @@ func (s *session) mysqlCheckField(t *TableInfo, field *ast.ColumnDef) {
 		s.appendErrorNo(ER_CHAR_TO_VARCHAR_LEN, field.Name.Name)
 	}
 
+	if field.Tp.Tp == mysql.TypeVarchar && (s.inc.MaxVarcharLength > 0 && field.Tp.Flen > int(s.inc.MaxVarcharLength)) {
+		s.appendErrorNo(ER_VARCHAR_TO_TEXT_LEN, field.Name.Name)
+	}
+
 	if (field.Tp.Tp == mysql.TypeFloat || field.Tp.Tp == mysql.TypeDouble) && s.inc.CheckFloatDouble {
 		s.appendErrorNo(ErrFloatDoubleToDecimal, field.Name.Name)
 	}

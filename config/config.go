@@ -325,6 +325,7 @@ type Inc struct {
 	Lang string `toml:"lang" json:"lang"`
 	// 连接服务器允许的最大包大小,以字节为单位 默认值为4194304(即4MB)
 	MaxAllowedPacket uint `toml:"max_allowed_packet" json:"max_allowed_packet"`
+	MaxVarcharLength uint `toml:"max_varchar_length" json:"max_varchar_length"`
 	MaxCharLength    uint `toml:"max_char_length" json:"max_char_length"`
 
 	// DDL操作最大允许的受影响行数. 默认值0,即不限制
@@ -619,6 +620,7 @@ type IncLevel struct {
 	ER_CANT_SET_ENGINE        int8 `toml:"er_cant_set_engine"`
 	ER_CHANGE_COLUMN_TYPE     int8 `toml:"er_change_column_type"`
 	ER_CHANGE_TOO_MUCH_ROWS   int8 `toml:"er_change_too_much_rows"`
+	ER_VARCHAR_TO_TEXT_LEN    int8 `toml:"er_varchar_to_text_len"`
 	ER_CHAR_TO_VARCHAR_LEN    int8 `toml:"er_char_to_varchar_len"`
 	ER_CHARSET_ON_COLUMN      int8 `toml:"er_charset_on_column"`
 	ER_COLUMN_HAVE_NO_COMMENT int8 `toml:"er_column_have_no_comment"`
@@ -765,6 +767,7 @@ var defaultConf = Config{
 		SupportEngine:         "innodb",
 		Lang:                  "en-US",
 		CheckColumnTypeChange: true,
+		MaxVarcharLength:      8192,
 
 		// 连接服务器选项
 		DefaultCharset:   "utf8mb4",
@@ -836,6 +839,7 @@ var defaultConf = Config{
 		ER_CANT_SET_ENGINE:              1,
 		ER_CHANGE_COLUMN_TYPE:           1,
 		ER_CHANGE_TOO_MUCH_ROWS:         1,
+		ER_VARCHAR_TO_TEXT_LEN:          1,
 		ER_CHAR_TO_VARCHAR_LEN:          1,
 		ER_CHARSET_ON_COLUMN:            1,
 		ER_COLUMN_HAVE_NO_COMMENT:       1,

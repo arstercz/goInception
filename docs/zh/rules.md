@@ -60,6 +60,7 @@ inception命令集 | 查看进程,osc进程,查看/设置变量及审核级别�
 不能设置列的字符集    | enable_column_charset
 列的类型不能使用集合、枚举、位图类型    | enable_enum_set_bit
 列必须要有注释    | check_column_comment
+varchar长度大于8192的时候需要改为text（长度可配置）   |  max_varchar_length
 char长度大于20的时候需要改为varchar（长度可配置）   |  max_char_length
 列的类型不能是BLOB/TEXT |  enable_blob_type
 列的类型不能是JSON |  enable_json_type

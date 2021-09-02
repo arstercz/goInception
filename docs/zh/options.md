@@ -82,6 +82,7 @@ ignore_osc_alter_stmt `v1.2.4` | ""    |   string  | 配置要强制忽略osc的
 lang `v0.5.1` | en-US             | en-US,zh-CN | 返回的信息使用语言,可选值`en-US`,`zh-CN`
 lock_wait_timeout `v1.2.4` | -1             | int | 会话在执行SQL时的元数据锁等待超时,单位:秒
 max_allowed_packet    `v1.0-rc3`            | 4194304     | int | 允许的最大数据包大小.默认为 `4194304`,单位字节,即4MB
+max_varchar_length             | 8192           | int | 最大 varchar 长度, 当超出时警告转换为 text 类型
 max_char_length                | 0              | int | 最大char长度,当超出时警告转换为varchar类型
 max_ddl_affect_rows `v1.0.2`   | 0              | int | 当DDL预估受影响行数超出设置值时警告,为0时不限制
 max_insert_rows   `v0.6.3`              | 0           | int  | 设置insert values允许的最大行数.0为不限制

@@ -108,6 +108,8 @@ general_log = false
 default_charset = "utf8mb4"
 max_allowed_packet = 4194304
 
+max_varchar_length = 8192
+
 [inc_level]
 er_alter_table_once = 1
 er_auto_incr_id_warning = 1
@@ -120,6 +122,7 @@ er_cant_set_collation = 1
 er_cant_set_engine = 1
 er_change_column_type = 1
 er_change_too_much_rows = 1
+er_varchar_to_text_len = 1
 er_char_to_varchar_len = 1
 er_charset_on_column = 1
 er_column_have_no_comment = 1

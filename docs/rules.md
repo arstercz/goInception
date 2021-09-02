@@ -90,6 +90,7 @@ Understand and be familiar with the following audit rules, you can know what goi
 |If enable column is any type of collect, enum, bitmap.|enable_enum_set_bit|
 |If columns must have comments.|check_column_comment|
 |If the length of char is more than 20, you need to change type to varchar.|max_char_length|
+|If the length of varchar is more than 8192, you need to change type to text.|max_varchar_length|
 |If enable column is BLOB/TEXT.|enable_blob_type|
 |If enable column is JSON.|enable_json_type|
 |Can not have duplicate column name in one table.|default|
