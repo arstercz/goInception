@@ -91,6 +91,7 @@ osc_critical_thread_running                   | 80             | int | correspon
 osc_max_thread_connected                      | 1000           | int | correspond to `--max-load中的thread_connected`
 osc_max_thread_running                        | 80             | int | correspond `--max-load中的thread_running`
 osc_min_table_size                     | 16             | int | Switch set，if value is 0, all ALTER will use OSC.if values is not 0, only the table size more than the values, use OSC. unit in MB，table size = `select (DATA_LENGTH + INDEX_LENGTH)/1024/1024 from information_schema.tables where table_schema = "dbname" and table_name = "tablename"`
+osc_max_drop_table_size                | 1024           | int | disable delete big table if you enable ghost_ok_to_drop_table
 osc_print_none                         | false          | bool | If value is 1, do not print. If values is 0, print osc output in inception result error sets.
 
 

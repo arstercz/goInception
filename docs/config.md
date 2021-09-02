@@ -37,11 +37,12 @@ check_column_comment = false
 # pt-osc options
 osc_on = false
 osc_min_table_size = 16
+osc_max_drop_table_size = 1024
 
 [ghost]
 # gh-ost options
+osc_max_drop_table_size = 1024
 ghost_allow_on_master = true
-
 ```
 
 ### host
