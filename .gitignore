@@ -25,3 +25,5 @@ tools/bin/
 tools/check/go.sum
 node_modules
 docs/.vuepress/dist
+docs/.vuepress/components
+docs/.vuepress/public
