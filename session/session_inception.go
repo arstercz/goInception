@@ -1433,7 +1433,7 @@ func (s *session) executeRemoteStatement(record *Record, isTran bool) {
 	start := time.Now()
 
 	if record.useOsc {
-		if s.ghost.GhostOn {
+		if s.ghost.GhostOn && !s.opt.ptosc {
 			if s.ghost.GhostBinDir != "" {
 				log.Infof("con:%d use binary gh-ost: %s",
 					s.sessionVars.ConnectionID, record.Sql)
@@ -2076,6 +2076,7 @@ func (s *session) parseOptions(sql string) {
 		IgnoreWarnings: viper.GetBool("ignoreWarnings"),
 		sleep:          viper.GetInt("sleep"),
 		sleepRows:      viper.GetInt("sleepRows"),
+		ptosc:          viper.GetBool("ptosc"),
 
 		middlewareExtend: viper.GetString("middlewareExtend"),
 		middlewareDB:     viper.GetString("middlewareDB"),

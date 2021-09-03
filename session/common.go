@@ -143,6 +143,9 @@ type SourceOptions struct {
 	// 使用count(*)计算受影响行数
 	RealRowCount bool
 
+	// 是否强制使用 pt-osc
+	ptosc bool
+
 	// 连接的数据库,默认为mysql
 	db string
 
