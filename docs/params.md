@@ -31,7 +31,6 @@ inception_magic_commit;
 |sleep `v1.0-rc3`|0|int|For decrease the impact to DB service, set sleep time by sleep_rows. Default 0 millisecond, max value is 100000 millisecond, equally 100 second.|
 |sleep_rows `v1.0-rc3`|1|int|Sleep after how many SQL execute. Default 1.|
 |real_row_count `v1.0.3`|FALSE|bool|If get real DML effect rows by `count(*)`, default false, if ture, ignore fingerprintSQL, accurately first.|
-|ptosc `v1.2.4_1`|FALSE|bool|force use pt-osc when meet osc condition.|
 
 
 ### MySQL encrypted connection set

@@ -32,7 +32,6 @@ split `v0.9.1` | false | bool | 将一段SQL语句按互不影响原则分组DDL
 sleep `v1.0-rc3` | 0 | int | 执行 `sleep_rows` 条SQL后休眠多少毫秒，用以降低对线上数据库的影响。单位为毫秒，最小值为 `0` ，即不设置，最大值为 `100000`，即100秒。默认值 `0`
 sleep_rows `v1.0-rc3` | 1 | int | 执行多少条SQL后休眠一次。最小值为 `1`，默认值 `1`
 real_row_count `v1.0.3` | false | bool | 设置是否通过count(*)获取真正受影响行数(DML操作).默认值 `false` (开启时忽略 `fingerprint`sql指纹功能设置,准确性优先)
-ptosc `v1.2.4_1`| false | bool | 满足使用 osc 改表的时候, 是否强制使用 pt-osc |
 
 ### mysql加密连接设置
 
