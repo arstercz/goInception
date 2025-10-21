@@ -4611,6 +4611,7 @@ func (s *session) checkDropIndex(node *ast.DropIndexStmt, sql string) {
 		return
 	}
 
+	s.mysqlShowTableStatus(t)
 	s.checkAlterTableDropIndex(t, node.IndexName)
 
 }
