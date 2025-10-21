@@ -4074,6 +4074,9 @@ func (s *session) mysqlCheckField(t *TableInfo, field *ast.ColumnDef) {
 		s.appendErrorNo(ErrJsonTypeSupport, field.Name.Name)
 	} else {
 		if !notNullFlag && !hasGenerated {
+			if isPrimary {
+				return
+			}
 			s.appendErrorNo(ER_NOT_ALLOWED_NULLABLE, field.Name.Name, tableName)
 		}
 	}
