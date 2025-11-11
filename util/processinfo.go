@@ -88,6 +88,9 @@ type OscProcessInfo struct {
 	IsGhost bool
 	Pause   bool
 
+	// help to check gh-ost done
+	IsDue   bool
+
 	PanicAbort chan ProcessOperation
 
 	// gh-ost serve-socket-file

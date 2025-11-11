@@ -692,6 +692,7 @@ func (s *session) mysqlExecuteAlterTableGhost(r *Record) {
 		RemainTime: "",
 		Info:       "",
 		IsGhost:    true,
+		IsDue:		false,
 		PanicAbort: make(chan util.ProcessOperation),
 		RW:         &sync.RWMutex{},
 	}
@@ -836,6 +837,7 @@ func (s *session) execCommand(r *Record, socketFile string, commandName string, 
 		RemainTime: "",
 		Info:       "",
 		IsGhost:    socketFile != "",
+		IsDue:		false,
 		SocketFile: socketFile,
 		PanicAbort: make(chan util.ProcessOperation),
 		RW:         &sync.RWMutex{},
@@ -960,6 +962,10 @@ func (s *session) mysqlAnalyzeOscOutput(out string, p *util.OscProcessInfo) {
 }
 
 func (s *session) mysqlAnalyzeGhostOutput(out string, p *util.OscProcessInfo) (complete bool) {
+	if p.IsDue && strings.Contains("# Done", out) {
+		complete = true
+	}
+
 	firsts := regGhostPercent.FindStringSubmatch(out)
 
 	p.RW.Lock()
@@ -982,7 +988,9 @@ func (s *session) mysqlAnalyzeGhostOutput(out string, p *util.OscProcessInfo) (c
 
 	if pct >= 100 {
 		pct = 100
-		complete = true
+
+		// replica maybe lag, and gh-ost will wait to cut-over, but pct and status is always 100 and due
+		p.IsDue = true
 	}
 
 	p.Percent = pct
